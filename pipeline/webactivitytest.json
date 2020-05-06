@@ -1,0 +1,56 @@
+{
+	"name": "webactivitytest",
+	"properties": {
+		"activities": [
+			{
+				"name": "ExecuteTest",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipeline1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "ExecuteTest",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "www.google.com",
+					"method": "POST",
+					"body": {
+						"value": "\"PipelineName\" : \"@{pipeline().Pipeline}\" ,\n\"PipelineId\":\"@{pipeline().RunId}\",\n\"ErrorMessage\":\"activity('ExecuteTest').ErrorMessage\n",
+						"type": "Expression"
+					},
+					"linkedServices": [
+						{
+							"referenceName": "AzureBlobStoragelinkedservice",
+							"type": "LinkedServiceReference"
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

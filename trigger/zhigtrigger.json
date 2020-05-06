@@ -1,0 +1,25 @@
+{
+	"name": "zhigtrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 10,
+				"startTime": "2020-02-13T20:23:00Z",
+				"endTime": "2020-03-05T18:39:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
