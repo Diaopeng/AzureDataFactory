@@ -1,13 +1,23 @@
 {
 	"name": "AzureBlobStoragelinkedservice",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"description": "sdfsdfsadasd",
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
-			"connectionString": "DefaultEndpointsProtocol=https;AccountName=zhigstorage;EndpointSuffix=core.windows.net;",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlpISUdBREZfZmQ5NzljNjMtOGFjMi00YmFiLWIwNjEtMTI3MTk2ZWQ5NjQwIg0KfQ=="
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "mytestLS"
+			}
 		},
-		"description": "sdfsdfsadasd"
-	}
+		"connectVia": {
+			"referenceName": "NewtestIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
