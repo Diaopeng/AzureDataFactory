@@ -2,6 +2,7 @@
 	"name": "NewtestIR",
 	"properties": {
 		"type": "Managed",
+		"description": "asd",
 		"typeProperties": {
 			"computeProperties": {
 				"location": "East US",
