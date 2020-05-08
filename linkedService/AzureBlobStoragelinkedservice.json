@@ -15,7 +15,7 @@
 			}
 		},
 		"connectVia": {
-			"referenceName": "NewtestIR",
+			"referenceName": "zhigGitModelIR",
 			"type": "IntegrationRuntimeReference"
 		}
 	},
