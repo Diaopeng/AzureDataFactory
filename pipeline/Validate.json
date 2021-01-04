@@ -1,0 +1,27 @@
+{
+	"name": "Validate",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation1",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "BlobStagingDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"file": "test1.txt"
+						}
+					},
+					"timeout": "7.00:00:00",
+					"sleep": 10
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2019-10-15T18:17:40Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

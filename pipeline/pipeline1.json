@@ -3,27 +3,55 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Wait1",
-				"type": "Wait",
+				"name": "Copy Data1",
+				"type": "Copy",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 2
-				}
+					"source": {
+						"type": "BlobSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "BlobStagingDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"file": {
+								"value": "@pipeline().parameters.filePath",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OutputDataset",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
-		"concurrency": 2,
 		"parameters": {
-			"Date": {
+			"filePath": {
 				"type": "string",
-				"defaultValue": "1970-01-01T"
-			},
-			"Time": {
-				"type": "string",
-				"defaultValue": "00:00:00.000Z"
+				"defaultValue": "empty.txt"
 			}
 		},
-		"annotations": []
+		"annotations": [],
+		"lastPublishTime": "2019-10-15T22:02:24Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

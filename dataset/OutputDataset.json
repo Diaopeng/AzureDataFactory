@@ -6,17 +6,20 @@
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "AzureBlob",
 		"typeProperties": {
-			"location": {
-				"type": "AzureBlobStorageLocation",
-				"container": "adftutorial"
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
 			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"quoteChar": "\""
-		},
-		"schema": []
+			"fileName": "",
+			"folderPath": "adftutorial/adftutorial"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

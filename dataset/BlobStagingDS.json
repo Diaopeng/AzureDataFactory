@@ -1,0 +1,24 @@
+{
+	"name": "BlobStagingDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureStorageLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"file": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"typeProperties": {
+			"fileName": {
+				"value": "@dataset().file",
+				"type": "Expression"
+			},
+			"folderPath": "adftutorial/input"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
