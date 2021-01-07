@@ -1,0 +1,216 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "zhigADF2"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStoragelinkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStoragelinkedservice'"
+		},
+		"AzureHDInsightLinkedService_clusterPassword": {
+			"type": "secureString",
+			"metadata": "Secure string for 'clusterPassword' of 'AzureHDInsightLinkedService'"
+		},
+		"AzureHDInsightLinkedService_clusterSshPassword": {
+			"type": "secureString",
+			"metadata": "Secure string for 'clusterSshPassword' of 'AzureHDInsightLinkedService'"
+		},
+		"AzureHDInsightLinkedService_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureHDInsightLinkedService'"
+		},
+		"AzureStorageLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureStorageLinkedService'"
+		},
+		"LinkedServiceforTesting_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LinkedServiceforTesting'"
+		},
+		"ManuallyLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ManuallyLS'"
+		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		},
+		"BlobStagingDS_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "@dataset().file"
+		},
+		"BlobStagingDS_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "adftutorial/input"
+		},
+		"OutputDataset_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"OutputDataset_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "adftutorial/adftutorial"
+		},
+		"AKVlinkedservice_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "testforLS"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
+			"type": "string",
+			"defaultValue": "1e42591f-1f0c-4c5a-b7f2-a268f6105ec5"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_clusterResourceGroup": {
+			"type": "string",
+			"defaultValue": "zhig"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "2b74f935-c9de-47f4-b171-f1af62fb44b0 "
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_clusterUserName": {
+			"type": "string",
+			"defaultValue": "zhigtest"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://zhigKV.vault.azure.net/"
+		},
+		"BlobEventTrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/1e42591f-1f0c-4c5a-b7f2-a268f6105ec5/resourceGroups/zhig/providers/Microsoft.Storage/storageAccounts/zhigstorage"
+		},
+		"scheduletrigger_properties_pipeline2_parameters_filename": {
+			"type": "string",
+			"defaultValue": "emp.txt"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "zhigADF2_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureBlobStoragelinkedservice_connectionString": {
+						"value": "[parameters('AzureBlobStoragelinkedservice_connectionString')]"
+					},
+					"AzureStorageLinkedService_connectionString": {
+						"value": "[parameters('AzureStorageLinkedService_connectionString')]"
+					},
+					"LinkedServiceforTesting_connectionString": {
+						"value": "[parameters('LinkedServiceforTesting_connectionString')]"
+					},
+					"ManuallyLS_connectionString": {
+						"value": "[parameters('ManuallyLS_connectionString')]"
+					},
+					"linkedService1_connectionString": {
+						"value": "[parameters('linkedService1_connectionString')]"
+					},
+					"AzureHDInsightLinkedService_clusterPassword": {
+						"value": "[parameters('AzureHDInsightLinkedService_clusterPassword')]"
+					},
+					"AzureHDInsightLinkedService_clusterSshPassword": {
+						"value": "[parameters('AzureHDInsightLinkedService_clusterSshPassword')]"
+					},
+					"AzureHDInsightLinkedService_servicePrincipalKey": {
+						"value": "[parameters('AzureHDInsightLinkedService_servicePrincipalKey')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"BlobStagingDS_properties_typeProperties_fileName": {
+						"value": "[parameters('BlobStagingDS_properties_typeProperties_fileName')]"
+					},
+					"BlobStagingDS_properties_typeProperties_folderPath": {
+						"value": "[parameters('BlobStagingDS_properties_typeProperties_folderPath')]"
+					},
+					"OutputDataset_properties_typeProperties_fileName": {
+						"value": "[parameters('OutputDataset_properties_typeProperties_fileName')]"
+					},
+					"OutputDataset_properties_typeProperties_folderPath": {
+						"value": "[parameters('OutputDataset_properties_typeProperties_folderPath')]"
+					},
+					"AKVlinkedservice_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AKVlinkedservice_properties_typeProperties_connectionString_secretName')]"
+					},
+					"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
+						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId')]"
+					},
+					"AzureHDInsightLinkedService_properties_typeProperties_clusterResourceGroup": {
+						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_clusterResourceGroup')]"
+					},
+					"AzureHDInsightLinkedService_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_servicePrincipalId')]"
+					},
+					"AzureHDInsightLinkedService_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_tenant')]"
+					},
+					"AzureHDInsightLinkedService_properties_typeProperties_clusterUserName": {
+						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_clusterUserName')]"
+					},
+					"BlobEventTrigger_properties_typeProperties_scope": {
+						"value": "[parameters('BlobEventTrigger_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "zhigADF2_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"scheduletrigger_properties_pipeline2_parameters_filename": {
+						"value": "[parameters('scheduletrigger_properties_pipeline2_parameters_filename')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'zhigADF2_ArmTemplate_0')]"
+			]
+		}
+	]
+}
