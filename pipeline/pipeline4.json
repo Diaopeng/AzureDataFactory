@@ -12,15 +12,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"testv": {
-				"type": "securestring",
-				"defaultValue": {
-					"type": "SecureString",
-					"value": "**********"
-				}
-			}
-		},
 		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
